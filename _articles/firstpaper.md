@@ -1,5 +1,5 @@
 ---
-title: "PictSure: Paper Preprint published"
+title: "Paper Preprint published"
 date: 2025-06-16
 author: PictSure Team
 tags: [announcement, icl, vision]

@@ -1,5 +1,5 @@
 ---
-title: "PictSure: Models now on Hugging Face"
+title: "Models now on Hugging Face"
 date: 2025-08-05
 author: PictSure Team
 tags: [release, icl, vision]
