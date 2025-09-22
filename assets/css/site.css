@@ -101,4 +101,49 @@
   background: linear-gradient(180deg, #a78bfa, #60a5fa); /* purple to blue gradient */
 }
 
+/* Prevent horizontal overflow on small screens caused by long words, unbroken URLs,
+   wide images, tables, or code blocks. Scoped to article content to avoid
+   interfering with other layouts. */
+#post-body {
+  /* allow long words and URLs to break and wrap */
+  overflow-wrap: anywhere;
+  word-break: break-word;
+  -webkit-hyphens: auto;
+  hyphens: auto;
+  -ms-word-break: break-word;
+}
+
+/* Ensure images, iframes, and videos do not exceed the article container */
+#post-body img,
+#post-body video,
+#post-body iframe {
+  max-width: 100%;
+  height: auto;
+  display: block;
+}
+
+/* Tables: allow horizontal scrolling within the article instead of overflowing the page */
+#post-body table {
+  width: 100%;
+  max-width: 100%;
+  border-collapse: collapse;
+  display: block;
+  overflow: auto;
+  -webkit-overflow-scrolling: touch;
+}
+
+/* Keep code blocks scrollable but not wider than container */
+#post-body pre {
+  max-width: 100%;
+  box-sizing: border-box;
+}
+
+/* Small-screen tweak: slightly reduce prose max-width if using a typography container */
+@media (max-width: 640px) {
+  #post-body {
+    font-size: 1rem;
+    line-height: 1.5;
+  }
+}
+
 
