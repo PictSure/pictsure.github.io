@@ -1,0 +1,75 @@
+---
+layout: default
+---
+<section class="relative overflow-hidden bg-gradient-to-r from-emerald-600 to-green-800 text-white">
+  <div class="max-w-7xl mx-auto px-6">
+    <div class="py-16 md:py-24">
+      <p class="uppercase tracking-widest text-sm font-semibold text-white/80">Article</p>
+      <h1 class="mt-3 text-4xl md:text-5xl font-extrabold leading-tight">{{ page.title }}</h1>
+      <div class="mt-4 flex flex-wrap items-center gap-4 text-white/90">
+        <div class="inline-flex items-center gap-2">
+          <span class="inline-block h-8 w-8 rounded-full bg-white/20"></span>
+          <span class="text-sm">By <strong>{{ page.author | default: 'PictSure Team' }}</strong></span>
+        </div>
+        <span class="opacity-70">•</span>
+        <span class="text-sm">{{ page.date | date: "%B %-d, %Y" }}</span>
+        <span class="opacity-70">•</span>
+        {%- assign words = page.content | number_of_words -%}
+        {%- assign minutes = words | divided_by:200 | ceil -%}
+        <span class="text-sm"><span id="reading-time">{{ minutes }}</span> min read</span>
+        {% if page.tags %}
+          <span class="opacity-70">•</span>
+          <div class="flex gap-2">
+            {% for tag in page.tags %}
+              <span class="text-xs px-2 py-1 rounded-full bg-white/15 ring-1 ring-white/30">{{ tag }}</span>
+            {% endfor %}
+          </div>
+        {% endif %}
+      </div>
+    </div>
+  </div>
+  <!-- wave -->
+  <div class="absolute bottom-0 left-0 w-full overflow-hidden leading-none" aria-hidden="true">
+    <svg viewBox="0 0 1428 174" xmlns="http://www.w3.org/2000/svg"><g fill="none" fill-rule="evenodd"><g transform="translate(-2 44)" fill="#FFFFFF" fill-rule="nonzero"><path d="M0,0 C90.7,0.93 147.9,27.19 291.9,59.91 C387.9,81.73 543.6,89.33 759,82.73 C469.34,156.25 216.34,153.67 0,74.97" opacity="0.10"></path><path d="M100,104.71 C277.41,72.23 426.15,52.52 546.2,45.58 C666.26,38.63 810.52,41.8 979,55.07 C931.07,56.12 810.3,74.85 616.7,111.24 C423.1,147.64 250.86,145.46 100,104.71 Z" opacity="0.10"></path><path d="M1046,51.65 C1130.83,29.33 1279.08,17.61 1439,40.17 L1439,120 C1271.17,77.94 1140.17,55.16 1046,51.65 Z" opacity="0.20"></path></g><g transform="translate(-4 76)" fill="#FFFFFF" fill-rule="nonzero"><path d="M0.457,34.035 C57.086,53.198 98.208,65.809 123.822,71.865 C181.454,85.495 234.295,90.29 272.033,93.459 C311.355,96.759 396.635,95.801 461.025,91.663 C486.76,90.01 518.727,86.372 556.926,80.752 C595.747,74.596 622.372,70.008 636.799,66.991 C663.913,61.324 712.501,49.503 727.605,46.128 C780.47,34.317 818.839,22.532 856.324,15.904 C922.689,4.169 955.676,2.522 1011.185,0.432 C1060.705,1.477 1097.39,3.129 1121.236,5.387 C1161.703,9.219 1208.621,17.821 1235.4,22.304 C1285.855,30.748 1354.351,47.432 1440.886,72.354 L1441.191,104.352 L1.121,104.031 L0.457,34.035 Z"></path></g></g></svg>
+  </div>
+</section>
+
+<main class="py-16 bg-white">
+  <div class="max-w-7xl mx-auto px-6 grid lg:grid-cols-[1fr_320px] gap-12">
+    <article class="prose prose-slate max-w-none" id="post-body">
+      {{ content }}
+      <!-- Tags -->
+      {% if page.tags %}
+      <div class="mt-10 flex flex-wrap gap-2">
+        {% for tag in page.tags %}
+          <a href="{{ '/tags/#' | append: tag | relative_url }}" class="text-xs px-2 py-1 rounded-full bg-slate-100 ring-1 ring-slate-200">{{ tag }}</a>
+        {% endfor %}
+      </div>
+      {% endif %}
+      <!-- Prev/Next (within collection) -->
+      <nav class="mt-12 grid md:grid-cols-2 gap-4">
+        {% if page.previous %}
+          <a href="{{ page.previous.url | relative_url }}" class="block rounded-xl border border-slate-200 p-4 hover:bg-slate-50">
+            <p class="text-xs uppercase tracking-wider text-slate-500">Previous</p>
+            <p class="font-semibold">{{ page.previous.title }}</p>
+          </a>
+        {% endif %}
+        {% if page.next %}
+          <a href="{{ page.next.url | relative_url }}" class="block rounded-xl border border-slate-200 p-4 text-right hover:bg-slate-50">
+            <p class="text-xs uppercase tracking-wider text-slate-500">Next</p>
+            <p class="font-semibold">{{ page.next.title }}</p>
+          </a>
+        {% endif %}
+      </nav>
+    </article>
+
+    <aside class="sticky top-24 h-fit space-y-6">
+      <div class="rounded-2xl border border-slate-200 p-6">
+        <p class="text-xs font-semibold uppercase tracking-wider text-slate-500">On this page</p>
+        <nav id="toc" class="mt-3 text-sm space-y-2">
+          {%- include toc.html -%}
+        </nav>
+      </div>
+    </aside>
+  </div>
+</main>

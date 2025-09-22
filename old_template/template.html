@@ -1,0 +1,241 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>PictSure — In-Context Image Classification</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <style>
+    /* simple underline gradient used under section titles */
+    .title-underline::after {
+      content: "";
+      display: block;
+      width: 220px;
+      height: 6px;
+      border-radius: 9999px;
+      margin: 18px auto 0;
+      background: linear-gradient(90deg, #ec4899 0%, #f59e0b 100%);
+      opacity: .45;
+    }
+  </style>
+</head>
+<body class="text-slate-800 antialiased">
+  <!-- ============ NAVBAR ============ -->
+  <header class="sticky top-0 z-40 bg-white/80 backdrop-blur border-b border-slate-100">
+    <div class="max-w-7xl mx-auto px-6">
+      <div class="flex h-16 items-center justify-between">
+        <!-- Logo -->
+        <a href="#" class="flex items-center gap-3 text-2xl font-extrabold tracking-wide">
+          <span class="inline-flex h-8 w-8 items-center justify-center rounded bg-slate-900 text-white">↗</span>
+          <span>PictSure</span>
+        </a>
+
+        <!-- Nav -->
+        <nav class="hidden md:flex items-center gap-8">
+          <a class="font-semibold" href="#">Overview</a>
+          <a class="text-slate-500 hover:text-slate-900" href="#features">Key Findings</a>
+          <a class="text-slate-500 hover:text-slate-900" href="#sections">Models & Results</a>
+          <a class="text-slate-500 hover:text-slate-900" href="#resources">Resources</a>
+          <a class="inline-flex items-center rounded-full px-6 py-2 font-semibold text-white bg-gradient-to-r from-pink-500 to-amber-400 shadow-lg shadow-pink-500/20 hover:opacity-95" href="#cta">Model on Huggingface</a>
+        </nav>
+
+        <button class="md:hidden inline-flex items-center justify-center h-10 w-10 rounded-lg border border-slate-200" aria-label="Open menu">≡</button>
+      </div>
+    </div>
+  </header>
+
+  <!-- HERO -->
+<section class="relative overflow-hidden bg-gradient-to-r from-pink-600 to-amber-400 text-white">
+  <div class="max-w-7xl mx-auto px-6 mb-12">
+    <div class="grid lg:grid-cols-2 gap-12 items-center py-24 lg:py-32">
+      <div>
+        <p class="uppercase tracking-widest/relaxed text-sm font-semibold/6 text-white/80">Few-Shot, Vision-Only ICL</p>
+        <h1 class="mt-3 text-5xl md:text-6xl font-extrabold leading-tight">
+          PictSure: An In-Context Learning Image Classifier
+        </h1>
+        <p class="mt-6 text-white/90 text-lg max-w-xl">
+          A compact transformer that classifies images in-context using <em>only</em> visual embeddings —
+          no gradient updates, no language supervision. Strong out-of-domain performance depends
+          critically on how the embedding model is pretrained.
+        </p>
+        <div class="mt-10 flex flex-wrap gap-4">
+          <a href="#features" class="inline-flex items-center rounded-full bg-white text-slate-900 px-8 py-3 font-semibold shadow-lg hover:shadow-xl transition">Read the Highlights</a>
+          <a href="https://arxiv.org/abs/2506.14842" class="inline-flex items-center rounded-full bg-white/15 ring-1 ring-white/40 text-white px-8 py-3 font-semibold backdrop-blur hover:bg-white/20 transition">arXiv Paper</a>
+        </div>
+      </div>
+      <!-- Image placeholder -->
+      <div class="relative">
+        <div class="w-full aspect-[4/3] rounded-2xl bg-white/10 ring-1 ring-white/30 flex items-center justify-center">
+          <div class="text-center px-6">
+            <p class="text-2xl font-extrabold">ICL Transformer</p>
+            <p class="mt-2 text-white/80">Support (image+label) → masked self-attention → Query label</p>
+            <p class="mt-4 text-sm text-white/70">Embeddings from ResNet18 or ViT (with Triplet-loss pretraining)</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- WAVE/Curve Shape -->
+  <div class="absolute bottom-0 left-0 w-full overflow-hidden leading-none">
+    <svg viewBox="0 0 1428 174" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+        <g fill="none" fill-rule="evenodd">
+          <g transform="translate(-2 44)" fill="#FFFFFF" fill-rule="nonzero">
+            <path d="M0,0 C90.7283404,0.927527913 147.912752,27.187927 291.910178,59.9119003 C387.908462,81.7278826 543.605069,89.334785 759,82.7326078 C469.336065,156.254352 216.336065,153.6679 0,74.9732496" opacity="0.10"></path>
+            <path d="M100,104.708498 C277.413333,72.2345949 426.147877,52.5246657 546.203633,45.5787101 C666.259389,38.6327546 810.524845,41.7979068 979,55.0741668 C931.069965,56.122511 810.303266,74.8455141 616.699903,111.243176 C423.096539,147.640838 250.863238,145.462612 100,104.708498 Z" opacity="0.10"></path>
+            <path d="M1046,51.6521276 C1130.83045,29.328812 1279.08318,17.607883 1439,40.1656806 L1439,120 C1271.17211,77.9435312 1140.17211,55.1609071 1046,51.6521276 Z" opacity="0.20"></path>
+          </g>
+          <g transform="translate(-4 76)" fill="#FFFFFF" fill-rule="nonzero">
+            <path d="M0.457,34.035 C57.086,53.198 98.208,65.809 123.822,71.865 C181.454,85.495 234.295,90.29 272.033,93.459 C311.355,96.759 396.635,95.801 461.025,91.663 C486.76,90.01 518.727,86.372 556.926,80.752 C595.747,74.596 622.372,70.008 636.799,66.991 C663.913,61.324 712.501,49.503 727.605,46.128 C780.47,34.317 818.839,22.532 856.324,15.904 C922.689,4.169 955.676,2.522 1011.185,0.432 C1060.705,1.477 1097.39,3.129 1121.236,5.387 C1161.703,9.219 1208.621,17.821 1235.4,22.304 C1285.855,30.748 1354.351,47.432 1440.886,72.354 L1441.191,104.352 L1.121,104.031 L0.457,34.035 Z"></path>
+          </g>
+        </g>
+      </svg>
+  </div>
+</section>
+
+
+  <!-- ============ FEATURE CARDS ============ -->
+  <section id="features" class="py-20 md:py-28 bg-white">
+    <div class="max-w-7xl mx-auto px-6 text-center">
+      <h2 class="text-5xl font-extrabold tracking-tight">Why PictSure?</h2>
+      <div class="title-underline"></div>
+
+      <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-10 mt-16">
+        <!-- Card 1 -->
+        <article class="rounded-2xl border border-slate-200 shadow-sm">
+          <div class="p-8">
+            <p class="text-xs font-semibold uppercase tracking-wider text-slate-500">Vision-only ICL</p>
+            <h3 class="mt-2 text-2xl font-extrabold text-left">No language supervision</h3>
+            <p class="mt-3 text-left text-slate-600">
+              PictSure performs in-context classification using visual embeddings only, avoiding the
+              pitfalls of text-aligned spaces in domains with weak semantics (e.g., medical imaging).
+            </p>
+          </div>
+          <div class="p-8 border-t border-slate-100 flex">
+            <a class="ml-auto inline-flex items-center rounded-full px-8 py-3 font-semibold text-white bg-gradient-to-r from-pink-500 to-amber-400 shadow-lg shadow-pink-500/20 hover:opacity-95" href="https://arxiv.org/abs/2506.14842">Read the paper</a>
+          </div>
+        </article>
+
+        <!-- Card 2 -->
+        <article class="rounded-2xl border border-slate-200 shadow-sm">
+          <div class="p-8">
+            <p class="text-xs font-semibold uppercase tracking-wider text-slate-500">Embeddings matter</p>
+            <h3 class="mt-2 text-2xl font-extrabold text-left">Frozen, well-pretrained wins</h3>
+            <p class="mt-3 text-left text-slate-600">
+              ResNet18 and ViT backbones pretrained on ImageNet yield the best ICL results when kept frozen—
+              stabilizing the token space and improving few-shot generalization.
+            </p>
+          </div>
+          <div class="p-8 border-t border-slate-100 flex">
+            <a class="mx-auto inline-flex items-center rounded-full px-8 py-3 font-semibold text-white bg-gradient-to-r from-pink-500 to-amber-400 shadow-lg shadow-pink-500/20 hover:opacity-95" href="#sections">See model variants</a>
+          </div>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ MODELS & RESULTS ============ -->
+  <section id="sections" class="py-20 md:py-28 bg-white">
+    <div class="max-w-7xl mx-auto px-6">
+      <h2 class="text-center text-5xl font-extrabold">Models & Results</h2>
+      <div class="title-underline"></div>
+
+      <!-- Row 1 -->
+      <div class="mt-16 grid lg:grid-cols-2 gap-12 items-center">
+        <div>
+          <h3 class="text-3xl font-extrabold">Architecture at a glance</h3>
+          <p class="mt-3 text-slate-600">
+            Sequence of support tokens (image&nbsp;+&nbsp;label) and a query token enter a 4-block
+            Transformer encoder with asymmetric attention: support attends to support; query attends
+            to all support; support does <em>not</em> attend to query. The query representation feeds a
+            classification head to predict the label.
+          </p>
+          <ul class="mt-4 text-slate-700 list-disc pl-6">
+            <li>ICL body: 4 blocks, 8 heads, d<sub>model</sub>=1028, FF=2048</li>
+            <li>Backbones: ResNet18 or ViT (with/without triplet pretraining)</li>
+            <li>Training task: 10-way 5-shot episodes on ImageNet-21K</li>
+          </ul>
+          <p class="mt-6 text-sm text-slate-500">Details in the paper appendix.</p>
+        </div>
+        <div class="w-full aspect-[3/2] rounded-2xl bg-slate-100 border border-slate-200 flex items-center justify-center">
+          <div class="px-8 text-center">
+            <p class="font-bold">Asymmetric attention for ICL</p>
+            <p class="mt-2 text-slate-600 text-sm">Support ↔ Support, Query → Support, Support ✕ Query</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- Row 2 (flipped) -->
+      <div id="results" class="mt-20 grid lg:grid-cols-2 gap-12 items-center">
+        <div class="order-2 lg:order-1 w-full aspect-[3/2] rounded-2xl bg-slate-100 border border-slate-200 p-8">
+          <div class="grid grid-cols-1 gap-4">
+            <div>
+              <h4 class="text-lg font-bold">Snapshot of Findings</h4>
+              <ul class="mt-2 text-slate-700 space-y-2">
+                <li>• <span class="font-semibold">Frozen embeddings</span> outperform joint training for both ResNet18 and ViT.</li>
+                <li>• <span class="font-semibold">ViT + Triplet loss</span> substantially stabilizes ICL training vs. plain supervised ViT.</li>
+                <li>• Strong <span class="font-semibold">out-of-domain</span> accuracy on medical and specialized datasets (e.g., Brain Tumor, OrganCMNIST).</li>
+                <li>• Compact models (≈53M–128M) compete with larger baselines.</li>
+              </ul>
+            </div>
+            <div class="pt-4 border-t border-slate-200">
+              <p class="text-sm text-slate-600">Benchmarks include tieredImageNet, miniImageNet, PlantDoc, Crop Diseases, Bone Break, Brain Tumor, OrganCMNIST, FGVC-Aircraft.</p>
+            </div>
+          </div>
+        </div>
+        <div class="order-1 lg:order-2">
+          <h3 class="text-3xl font-extrabold">Model Variants</h3>
+          <p class="mt-3 text-slate-600">We evaluate a family of ICL models that differ only in the embedding backbone and pretraining:</p>
+          <ul class="mt-4 text-slate-700 list-disc pl-6">
+            <li><span class="font-semibold">PictSure-ResNet</span> — ResNet18 backbone (frozen recommended)</li>
+            <li><span class="font-semibold">PictSure-ViT</span> — ViT backbone (plain supervised; less stable)</li>
+            <li><span class="font-semibold">PictSure-ViT-Trip</span> — ViT with Triplet-loss pretraining (best ViT stability/accuracy)</li>
+          </ul>
+          <p class="mt-4 text-slate-600">All share the same ICL transformer and label-in-token design.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ RESOURCES / CTA ============ -->
+  <section id="resources" class="py-20 bg-white">
+    <div class="max-w-7xl mx-auto px-6">
+      <h2 class="text-center text-5xl font-extrabold">Resources</h2>
+      <div class="title-underline"></div>
+
+      <div class="mt-16 grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+        <a href="https://arxiv.org/abs/2506.14842" class="block rounded-2xl border border-slate-200 p-6 hover:shadow-md transition">
+          <p class="text-xs uppercase tracking-wider text-slate-500 font-semibold">Paper</p>
+          <h3 class="mt-2 text-2xl font-extrabold">arXiv: PictSure</h3>
+          <p class="mt-2 text-slate-600">Pretraining embeddings matters for vision-only in-context image classification.</p>
+        </a>
+        <a href="https://github.com/PictSure/pictsure-library" class="block rounded-2xl border border-slate-200 p-6 hover:shadow-md transition">
+          <p class="text-xs uppercase tracking-wider text-slate-500 font-semibold">Code</p>
+          <h3 class="mt-2 text-2xl font-extrabold">pictsure-library</h3>
+          <p class="mt-2 text-slate-600">Library, training recipes, and evaluation scripts.</p>
+        </a>
+        <a href="#bibtex" class="block rounded-2xl border border-slate-200 p-6 hover:shadow-md transition">
+          <p class="text-xs uppercase tracking-wider text-slate-500 font-semibold">Cite</p>
+          <h3 class="mt-2 text-2xl font-extrabold">BibTeX</h3>
+          <p class="mt-2 text-slate-600">Grab the citation snippet for your work.</p>
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ FOOTER / CTA ============ -->
+  <footer id="cta" class="border-t border-slate-100 py-12">
+    <div class="max-w-7xl mx-auto px-6 flex flex-col md:flex-row items-center justify-between gap-6">
+      <p class="text-slate-600">© <span id="year"></span> PictSure. All rights reserved.</p>
+      <div class="flex gap-3">
+        <a href="https://github.com/PictSure/pictsure-library" class="inline-flex items-center rounded-full px-6 py-2 font-semibold text-white bg-gradient-to-r from-pink-500 to-amber-400 shadow-lg shadow-pink-500/20 hover:opacity-95">Model on Huggingface</a>
+        <a href="https://arxiv.org/abs/2506.14842" class="inline-flex items-center rounded-full px-6 py-2 font-semibold text-slate-900 bg-white ring-1 ring-slate-200 hover:bg-slate-50">Read the Paper</a>
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    document.getElementById('year').textContent = new Date().getFullYear();
+  </script>
+</body>
+</html>

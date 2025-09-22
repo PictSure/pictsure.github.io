@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  {%- assign meta_title = page.title | default: site.title -%}
+  {%- if page.title -%}
+    {%- assign full_title = page.title | append: " — " | append: site.title -%}
+  {%- else -%}
+    {%- assign full_title = site.title | append: " — " | append: site.description -%}
+  {%- endif -%}
+  <title>{{ full_title }}</title>
+
+  {%- assign meta_description = page.excerpt | default: page.description | default: site.description -%}
+  <meta name="description" content="{{ meta_description | strip_html | strip_newlines | truncate: 160 }}">
+
+  {%- comment -%} canonical URL {%- endcomment -%}
+  {%- if site.url -%}
+    {%- assign canonical_url = site.url | append: page.url -%}
+    <link rel="canonical" href="{{ canonical_url }}" />
+  {%- endif -%}
+
+  {%- comment -%} Open Graph and Twitter Card tags {%- endcomment -%}
+  <meta property="og:site_name" content="{{ site.title }}">
+  <meta property="og:title" content="{{ meta_title }}">
+  <meta property="og:description" content="{{ meta_description | strip_html | strip_newlines | truncate: 200 }}">
+  <meta property="og:type" content="website">
+  {%- if site.url -%}
+    <meta property="og:url" content="{{ canonical_url }}">
+  {%- endif -%}
+  {%- assign og_image = page.cover | default: site.logo | default: '/assets/img/PictSureIcon.png' -%}
+  {%- if og_image -%}
+    {%- if og_image contains '://' -%}
+      <meta property="og:image" content="{{ og_image }}">
+    {%- else -%}
+      <meta property="og:image" content="{{ site.url }}{{ og_image }}">
+    {%- endif -%}
+  {%- endif -%}
+
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="{{ meta_title }}">
+  <meta name="twitter:description" content="{{ meta_description | strip_html | strip_newlines | truncate: 200 }}">
+  {%- if og_image -%}
+    {%- if og_image contains '://' -%}
+      <meta name="twitter:image" content="{{ og_image }}">
+    {%- else -%}
+      <meta name="twitter:image" content="{{ site.url }}{{ og_image }}">
+    {%- endif -%}
+  {%- endif -%}
+  <link rel="icon" href="{{ '/favicon.ico' | relative_url }}" />
+  <script src="https://cdn.tailwindcss.com"></script>
+  <style>
+    .title-underline::after {
+      content: ""; display: block; width: 220px; height: 6px; border-radius: 9999px;
+      margin: 18px auto 0; background: linear-gradient(90deg,#059669 0%,#065f46 100%); opacity:.45;
+    }
+    .no-scrollbar::-webkit-scrollbar{display:none}.no-scrollbar{-ms-overflow-style:none;scrollbar-width:none}
+    /* Improve heading prominence inside article prose */
+    .prose h1, .prose h2, .prose h3 { scroll-margin-top:120px; font-weight:800; }
+    .prose h1 { font-size:2.25rem; /* 36px */ }
+    .prose h2 { font-size:1.5rem;  /* 24px */ }
+    .prose h3 { font-size:1.25rem; /* 20px */ }
+  </style>
+  <link rel="stylesheet" href="{{ '/assets/css/site.css' | relative_url }}">
+</head>
+<body class="text-slate-800 antialiased">
+
+  <!-- NAV -->
+  <header class="sticky top-0 z-40 bg-white/80 backdrop-blur border-b border-slate-100">
+    <div class="max-w-7xl mx-auto px-6">
+      <div class="flex h-16 items-center justify-between">
+        <a href="{{ '/' | relative_url }}" class="flex items-center gap-3 text-2xl font-extrabold tracking-wide">
+            <img src="{{ '/assets/img/PictSureIcon.png' | relative_url }}" alt="The PictSure Logo" class="w-8 h-8 rounded object-cover object-center" loading="lazy" decoding="async" />
+          <span>PictSure</span>
+        </a>
+        <nav class="hidden md:flex items-center gap-8">
+          <a class="font-semibold" href="{{ '/' | relative_url }}">Overview</a>
+            <a class="text-slate-500 hover:text-slate-900" href="https://arxiv.org/abs/2506.14842" target="_blank" rel="noopener">Paper</a>
+          <a class="inline-flex items-center rounded-full px-6 py-2 font-semibold text-white bg-gradient-to-r from-emerald-600 to-green-800 shadow-lg shadow-pink-500/20 hover:opacity-95" target="_blank" rel="noopener" href="https://huggingface.co/pictsure">Model on Huggingface</a>
+        </nav>
+        <button class="md:hidden inline-flex items-center justify-center h-10 w-10 rounded-lg border border-slate-200" aria-label="Open menu">≡</button>
+      </div>
+    </div>
+  </header>
+
+  {{ content }}
+
+  <footer id="cta" class="border-t border-slate-100 py-12">
+    <div class="max-w-7xl mx-auto px-6 flex flex-col md:flex-row items-center justify-between gap-6">
+      <p class="text-slate-600">© <span id="year"></span> {{ site.title }}. All rights reserved.</p>
+      <div class="flex gap-3">
+        <a href="https://github.com/PictSure/pictsure-library" class="inline-flex items-center rounded-full px-6 py-2 font-semibold text-white bg-gradient-to-r from-emerald-600 to-green-800 shadow-lg shadow-pink-500/20 hover:opacity-95">Model on Huggingface</a>
+        <a href="https://arxiv.org/abs/2506.14842" class="inline-flex items-center rounded-full px-6 py-2 font-semibold text-slate-900 bg-white ring-1 ring-slate-200 hover:bg-slate-50">Read the Paper</a>
+      </div>
+    </div>
+  </footer>
+
+  <script src="https://cdn.jsdelivr.net/npm/marked@12/marked.min.js"></script>
+  <script src="{{ '/assets/js/site.js' | relative_url }}"></script>
+  <script>document.getElementById('year').textContent = new Date().getFullYear();</script>
+  {%- comment -%} JSON-LD structured data: WebSite + Article when applicable {%- endcomment -%}
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@graph": [
+      {
+        "@type": "WebSite",
+        "@id": "{{ site.url }}#website",
+        "url": "{{ site.url }}",
+        "name": "{{ site.title | escape }}",
+        "description": "{{ site.description | escape }}"
+      }{%- if page.date -%},
+      {
+        "@type": "Article",
+        "@id": "{{ site.url }}{{ page.url }}#article",
+        "headline": "{{ page.title | escape }}",
+        "description": "{{ meta_description | strip_html | strip_newlines | truncate: 200 | escape }}",
+        "url": "{{ site.url }}{{ page.url }}",
+        "datePublished": "{{ page.date | date_to_xmlschema }}",
+        "author": {
+          "@type": "Person",
+          "name": "{{ page.author | default: site.title | escape }}"
+        }{%- if page.cover -%},
+        "image": {
+          "@type": "ImageObject",
+          "url": "{{ site.url }}{{ page.cover }}"
+        }
+        {%- endif -%}
+      }
+      {%- endif -%}
+    ]
+  }
+  </script>
+</body>
+</html>

@@ -1,0 +1,41 @@
+---
+layout: none
+---
+<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+  {%- comment -%} Pages (standard site pages) {%- endcomment -%}
+  {%- for p in site.pages -%}
+    {%- if p.sitemap == false or p.noindex == true -%}
+      {%- continue -%}
+    {%- endif -%}
+    <url>
+      <loc>{{ site.url }}{{ p.url }}</loc>
+      {%- if p.last_modified_at -%}
+        <lastmod>{{ p.last_modified_at | date_to_xmlschema }}</lastmod>
+      {%- elsif p.date -%}
+        <lastmod>{{ p.date | date_to_xmlschema }}</lastmod>
+      {%- endif -%}
+      <changefreq>monthly</changefreq>
+      <priority>0.7</priority>
+    </url>
+  {%- endfor -%}
+
+  {%- comment -%} Collection: articles {%- endcomment -%}
+  {%- if site.collections and site.collections.articles -%}
+    {%- for p in site.collections.articles.docs -%}
+      {%- if p.sitemap == false or p.noindex == true -%}
+        {%- continue -%}
+      {%- endif -%}
+      <url>
+        <loc>{{ site.url }}{{ p.url }}</loc>
+        {%- if p.last_modified_at -%}
+          <lastmod>{{ p.last_modified_at | date_to_xmlschema }}</lastmod>
+        {%- elsif p.date -%}
+          <lastmod>{{ p.date | date_to_xmlschema }}</lastmod>
+        {%- endif -%}
+        <changefreq>monthly</changefreq>
+        <priority>0.7</priority>
+      </url>
+    {%- endfor -%}
+  {%- endif -%}
+</urlset>

@@ -1,0 +1,34 @@
+title: PictSure
+description: In-Context Image Classification
+baseurl: ""        # empty for local serving; set "/repo" when deploying to user.github.io/repo
+url: "https://pictsure.github.io"            # set "https://user.github.io" when you know it
+
+# Use a custom collection for articles (instead of _posts)
+collections:
+  articles:
+    output: true
+    permalink: /articles/:name/
+
+# Kramdown (default Markdown processor on GitHub Pages)
+markdown: kramdown
+highlighter: rouge
+
+# GitHub Pages safe defaults
+theme: null
+plugins: []        # GitHub Pages allows only whitelisted plugins; we don't need any
+
+# Expose these to Liquid
+defaults:
+  - scope:
+      path: ""
+      type: "articles"
+    values:
+      layout: article
+
+# Kramdown options: enable auto id generation for headings and set TOC levels
+# This allows server-side TOC generation and stable heading anchors.
+kramdown:
+  input: GFM
+  auto_ids: true
+  toc_levels: 2..3
+  parse_block_html: true

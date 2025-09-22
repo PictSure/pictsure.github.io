@@ -1,0 +1,27 @@
+{%- assign toc = '' -%}
+{%- assign lines = page.content | split: '\n' -%}
+{%- for line in lines -%}
+  {%- assign l = line | strip -%}
+  {%- if l != '' -%}
+    {%- assign first3 = l | slice: 0, 3 -%}
+    {%- assign first2 = l | slice: 0, 2 -%}
+    {%- if first3 == '###' -%}
+      {%- assign text = l | remove_first: '###' | strip -%}
+      {%- assign id = text | slugify: 'default' -%}
+      {%- capture item -%}
+<li class="ml-3"><a href="#{{ id }}" class="block hover:underline">{{ text }}</a></li>
+      {%- endcapture -%}
+      {%- assign toc = toc | append: item -%}
+    {%- elsif first2 == '##' -%}
+      {%- assign text = l | remove_first: '##' | strip -%}
+      {%- assign id = text | slugify: 'default' -%}
+      {%- capture item -%}
+<li><a href="#{{ id }}" class="block hover:underline">{{ text }}</a></li>
+      {%- endcapture -%}
+      {%- assign toc = toc | append: item -%}
+    {%- endif -%}
+  {%- endif -%}
+{%- endfor -%}
+{%- if toc != '' -%}
+<ul class="space-y-2 list-none p-0 m-0">{{ toc }}</ul>
+{%- endif -%}

@@ -1,0 +1,185 @@
+---
+layout: default
+---
+<section class="relative overflow-hidden bg-gradient-to-r from-emerald-600 to-green-800 text-white">
+  <div class="max-w-7xl mx-auto px-6 mb-12 pb-24">
+    <div class="grid lg:grid-cols-2 gap-12 items-center py-24 lg:py-32">
+      <div>
+        <p class="uppercase tracking-widest/relaxed text-sm font-semibold/6 text-white/80">Few-Shot, Vision-Only ICL</p>
+        <h1 class="mt-3 text-5xl md:text-6xl font-extrabold leading-tight">PictSure: An In-Context Learning Image
+          Classifier</h1>
+        <div class="mt-10 flex flex-wrap gap-4">
+          <a href="#features"
+            class="inline-flex items-center rounded-full bg-white text-slate-900 px-8 py-3 font-semibold shadow-lg hover:shadow-xl transition">Read
+            the Highlights</a>
+          <a href="https://arxiv.org/abs/2506.14842"
+            class="inline-flex items-center rounded-full bg-white/15 ring-1 ring-white/40 text-white px-8 py-3 font-semibold backdrop-blur hover:bg-white/20 transition">arXiv
+            Paper</a>
+        </div>
+        <p class="mt-6 text-white/90 text-lg max-w-xl">A compact transformer that classifies images in-context using
+          <em>only</em> visual embeddings — no gradient updates, no language supervision. Strong out-of-domain
+          performance depends critically on how the embedding model is pretrained.</p>
+      </div>
+      <div class="relative">
+        <div class="w-full aspect-[4/3] rounded-2xl overflow-hidden">
+          <!-- Use remote hero image; object-cover preserves cropping. -->
+          <img
+            src="https://cdn-uploads.huggingface.co/production/uploads/65d65a40531e0bc924f0b1a3/aINq_HQmhIlapvtseaLIs.png"
+            alt="The PictSure Logo" class="w-full h-full object-cover object-center" loading="lazy" decoding="async" />
+        </div>
+      </div>
+    </div>
+  </div>
+  <!-- wave -->
+  <div class="absolute bottom-0 left-0 w-full overflow-hidden leading-none" aria-hidden="true">
+    <svg viewBox="0 0 1428 174" xmlns="http://www.w3.org/2000/svg">
+      <g fill="none" fill-rule="evenodd">
+        <g transform="translate(-2 44)" fill="#FFFFFF" fill-rule="nonzero">
+          <path
+            d="M0,0 C90.7283404,0.9275 147.9128,27.1879 291.9102,59.9119 C387.9085,81.7279 543.6051,89.3348 759,82.7326 C469.3361,156.2544 216.3361,153.6679 0,74.9732"
+            opacity="0.10"></path>
+          <path
+            d="M100,104.7085 C277.4133,72.2346 426.1479,52.5247 546.2036,45.5787 C666.2594,38.6328 810.5248,41.7979 979,55.0742 C931.07,56.1225 810.3033,74.8455 616.6999,111.2432 C423.0965,147.6408 250.8632,145.4626 100,104.7085 Z"
+            opacity="0.10"></path>
+          <path
+            d="M1046,51.6521 C1130.8305,29.3288 1279.0832,17.6079 1439,40.1657 L1439,120 C1271.1721,77.9435 1140.1721,55.1609 1046,51.6521 Z"
+            opacity="0.20"></path>
+        </g>
+        <g transform="translate(-4 76)" fill="#FFFFFF" fill-rule="nonzero">
+          <path
+            d="M0.457,34.035 C57.086,53.198 98.208,65.809 123.822,71.865 C181.454,85.495 234.295,90.29 272.033,93.459 C311.355,96.759 396.635,95.801 461.025,91.663 C486.76,90.01 518.727,86.372 556.926,80.752 C595.747,74.596 622.372,70.008 636.799,66.991 C663.913,61.324 712.501,49.503 727.605,46.128 C780.47,34.317 818.839,22.532 856.324,15.904 C922.689,4.169 955.676,2.522 1011.185,0.432 C1060.705,1.477 1097.39,3.129 1121.236,5.387 C1161.703,9.219 1208.621,17.821 1235.4,22.304 C1285.855,30.748 1354.351,47.432 1440.886,72.354 L1441.191,104.352 L1.121,104.031 L0.457,34.035 Z">
+          </path>
+        </g>
+      </g>
+    </svg>
+  </div>
+</section>
+
+<!-- ===== Why PictSure? becomes a horizontal scroller fed by site.articles ===== -->
+<section id="features" class="py-20 md:py-28 bg-white">
+  <div class="max-w-7xl mx-auto px-6">
+    <h2 class="text-center text-5xl font-extrabold tracking-tight">PictSure News</h2>
+    <div class="title-underline"></div>
+    <p class="mt-6 text-center text-slate-600">Fresh notes & findings from the team.</p>
+
+    <div class="mt-10">
+      <div class="flex items-center justify-between mb-4">
+        <div class="flex gap-2">
+          <button id="prevBtn" class="h-10 w-10 rounded-full border border-slate-200 hover:bg-slate-50"
+            aria-label="Previous">‹</button>
+          <button id="nextBtn" class="h-10 w-10 rounded-full border border-slate-200 hover:bg-slate-50"
+            aria-label="Next">›</button>
+        </div>
+      </div>
+
+      <div id="cards" class="no-scrollbar overflow-x-auto snap-x snap-mandatory -mx-6 px-6">
+        <div class="flex gap-6 pb-2" id="cards-inner">
+          {% assign posts = site.articles | sort: 'date' | reverse %}
+          {% for p in posts %}
+          <!-- Use a fixed width so all cards are identical in the horizontal scroller -->
+          <a href="{{ p.url | relative_url }}"
+            class="snap-start shrink-0 w-[420px] block rounded-2xl border border-slate-200 hover:shadow-md transition overflow-hidden bg-white">
+            {% if p.cover %}
+            <div class="aspect-[16/9] bg-slate-100"
+              style="background-image:url('{{ p.cover }}'); background-size:cover; background-position:center;"></div>
+            {% endif %}
+            <div class="p-6">
+              <p class="text-xs uppercase tracking-wider text-slate-500 font-semibold">{{ p.category | default: 'Update'
+                }}</p>
+              <h3 class="mt-2 text-xl md:text-2xl font-extrabold">{{ p.title }}</h3>
+              <p class="mt-2 text-slate-600 line-clamp-3">{{ p.excerpt | default: p.description }}</p>
+              <div class="mt-4 flex items-center gap-2 text-slate-500 text-sm">
+                <span>{{ p.author | default: 'PictSure Team' }}</span>
+                {% if p.date %}<span>•</span><span>{{ p.date | date: "%Y-%m-%d" }}</span>{% endif %}
+              </div>
+              <div class="mt-3 flex flex-wrap gap-2">
+                {% for t in p.tags limit:3 %}
+                <span class="text-[10px] px-2 py-1 rounded-full bg-slate-100 ring-1 ring-slate-200">{{ t }}</span>
+                {% endfor %}
+              </div>
+            </div>
+          </a>
+          {% endfor %}
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="sections" class="py-20 md:py-28 bg-white">
+  <div class="max-w-7xl mx-auto px-6">
+    <h2 class="text-center text-5xl font-extrabold">Details</h2>
+    <div class="title-underline"></div>
+
+    <!-- Row 1 -->
+    <div class="mt-16 grid lg:grid-cols-2 gap-12 items-center">
+      <div>
+        <h3 class="text-3xl font-extrabold">Architecture at a glance</h3>
+        <p class="mt-3 text-slate-600">
+          Sequence of support tokens (image&nbsp;+&nbsp;label) and a query token enter a 4-block
+          Transformer encoder with asymmetric attention: support attends to support; query attends
+          to all support; support does <em>not</em> attend to query. The query representation feeds a
+          classification head to predict the label.
+        </p>
+        <p class="mt-6 text-sm text-slate-500">Details in the paper.</p>
+      </div>
+      <div class="w-full aspect-[3/2] rounded-2xl overflow-hidden border border-slate-200">
+        <img src="https://raw.githubusercontent.com/PictSure/pictsure-library/main/images/Flow-Chart.png"
+          alt="Asymmetric attention flow chart" class="w-full h-full object-cover object-center p-3" loading="lazy"
+          decoding="async" />
+      </div>
+    </div>
+
+    <!-- Row 2 (flipped) -->
+    <div id="results" class="mt-20 grid lg:grid-cols-2 gap-12 items-center">
+      <div class="order-2 lg:order-1 w-full aspect-[3/2] rounded-2xl bg-slate-100 border border-slate-200 p-8">
+        <div class="grid grid-cols-1 gap-4">
+          <div>
+            <h4 class="text-lg font-bold">Few-Shot Classification Example</h4>
+            <pre class="bg-slate-100 rounded-lg p-4 text-sm overflow-x-auto"><code class="language-python">
+<span class="text-emerald-700">from</span> PictSure <span class="text-emerald-700">import</span> PictSure
+<span class="text-emerald-700">from</span> PIL <span class="text-emerald-700">import</span> Image
+model = PictSure.from_pretrained(<span class="text-orange-700">"pictsure/pictsure-vit"</span>)
+context_images = [
+    Image.open(<span class="text-orange-700">"cat1.jpg"</span>),
+    Image.open(<span class="text-orange-700">"cat2.jpg"</span>),
+    Image.open(<span class="text-orange-700">"dog1.jpg"</span>),
+    Image.open(<span class="text-orange-700">"dog2.jpg"</span>)
+]
+context_labels = [<span class="text-blue-700">0</span>, <span class="text-blue-700">0</span>, <span class="text-blue-700">1</span>, <span class="text-blue-700">1</span>]  
+model.set_context_images(context_images, context_labels)
+test_image = Image.open(<span class="text-orange-700">"unknown_animal.jpg"</span>)
+prediction = model.predict(test_image)
+print(f<span class="text-orange-700">"Predicted class: {prediction}"</span>)
+</code></pre>
+
+          </div>
+        </div>
+      </div>
+      <div class="order-1 lg:order-2">
+        <h3 class="text-3xl font-extrabold">Open Source Models & Code</h3>
+        <p class="mt-3 text-slate-600">
+          All PictSure models and inference code are fully open source and available for use and modification. The
+          training script will be released soon.
+        </p>
+        <p class="mt-3 text-slate-600">
+          Each model differs only in the embedding backbone and pretraining method; all share the same ICL transformer
+          and label-in-token design.
+        </p>
+        <div class="mt-6 flex flex-wrap gap-4"></div>
+        <a href="https://huggingface.co/PictSure" target="_blank" rel="noopener"
+          class="inline-flex items-center rounded-full bg-emerald-600 text-white px-6 py-2 font-semibold shadow hover:bg-emerald-700 transition">
+          Hugging Face Models
+        </a>
+        <a href="https://github.com/PictSure/pictsure-library" target="_blank" rel="noopener"
+          class="inline-flex items-center rounded-full bg-slate-900 text-white px-6 py-2 font-semibold shadow hover:bg-slate-800 transition">
+          GitHub Repository
+        </a>
+      </div>
+    </div>
+  </div>
+  </div>
+</section>
+
+<!-- ===== The rest of your homepage content (Models & Results, Resources, Footer) ===== -->
+{{ content }} <!-- we’ll keep the remaining sections inline to keep this file short -->

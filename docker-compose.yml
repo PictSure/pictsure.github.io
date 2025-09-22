@@ -1,0 +1,9 @@
+services:
+  jekyll-site:
+    image: jekyll-site
+    build: .
+    # Mount the project into /site because the Dockerfile sets WORKDIR /site
+    volumes: [ .:/site ]
+    ports: [ 4000:4000 ]
+    user: 1000:1000
+    command: jekyll serve -H 0.0.0.0 -w

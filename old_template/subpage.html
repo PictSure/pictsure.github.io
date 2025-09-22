@@ -1,0 +1,198 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>PictSure — Blog Template</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <style>
+    /* shared underline gradient */
+    .title-underline::after {
+      content: "";
+      display: block;
+      width: 180px;
+      height: 6px;
+      border-radius: 9999px;
+      margin: 18px auto 0;
+      background: linear-gradient(90deg, #ec4899 0%, #f59e0b 100%);
+      opacity: .45;
+    }
+    /* prose helpers */
+    .prose h2 { scroll-margin-top: 120px; }
+    .prose h3 { scroll-margin-top: 120px; }
+  </style>
+</head>
+<body class="text-slate-800 antialiased">
+  <!-- NAVBAR (same style) -->
+  <header class="sticky top-0 z-40 bg-white/80 backdrop-blur border-b border-slate-100">
+    <div class="max-w-7xl mx-auto px-6">
+      <div class="flex h-16 items-center justify-between">
+        <a href="index.html" class="flex items-center gap-3 text-2xl font-extrabold tracking-wide">
+          <span class="inline-flex h-8 w-8 items-center justify-center rounded bg-slate-900 text-white">↗</span>
+          <span>PictSure</span>
+        </a>
+        <nav class="hidden md:flex items-center gap-8">
+          <a class="text-slate-500 hover:text-slate-900" href="index.html#features">Key Findings</a>
+          <a class="text-slate-500 hover:text-slate-900" href="index.html#sections">Models</a>
+          <a class="text-slate-500 hover:text-slate-900" href="index.html#resources">Resources</a>
+          <a class="inline-flex items-center rounded-full px-6 py-2 font-semibold text-white bg-gradient-to-r from-pink-500 to-amber-400 shadow-lg shadow-pink-500/20 hover:opacity-95" href="index.html#cta">Get the Code</a>
+        </nav>
+        <button class="md:hidden inline-flex items-center justify-center h-10 w-10 rounded-lg border border-slate-200" aria-label="Open menu">≡</button>
+      </div>
+    </div>
+  </header>
+
+  <!-- HERO / POST HEADER -->
+  <section class="relative overflow-hidden bg-gradient-to-r from-pink-600 to-amber-400 text-white">
+    <div class="max-w-7xl mx-auto px-6">
+      <div class="py-16 md:py-24">
+        <p class="uppercase tracking-widest text-sm font-semibold text-white/80">Blog</p>
+        <h1 class="mt-3 text-4xl md:text-5xl font-extrabold leading-tight">Lorem Ipsum: A Placeholder Post Title</h1>
+        <div class="mt-4 flex flex-wrap items-center gap-4 text-white/90">
+          <div class="inline-flex items-center gap-2">
+            <span class="inline-block h-8 w-8 rounded-full bg-white/20"></span>
+            <span class="text-sm">By <strong>Author Name</strong></span>
+          </div>
+          <span class="opacity-70">•</span>
+          <span class="text-sm">September 1, 2025</span>
+          <span class="opacity-70">•</span>
+          <span class="text-sm"><span id="reading-time">8</span> min read</span>
+          <span class="opacity-70">•</span>
+          <div class="flex gap-2">
+            <span class="text-xs px-2 py-1 rounded-full bg-white/15 ring-1 ring-white/30">template</span>
+            <span class="text-xs px-2 py-1 rounded-full bg-white/15 ring-1 ring-white/30">lorem</span>
+            <span class="text-xs px-2 py-1 rounded-full bg-white/15 ring-1 ring-white/30">blog</span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- wave -->
+    <div class="absolute bottom-0 left-0 w-full overflow-hidden leading-none">
+      <svg viewBox="0 0 1428 174" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+        <g fill="none" fill-rule="evenodd">
+          <g transform="translate(-2 44)" fill="#FFFFFF" fill-rule="nonzero">
+            <path d="M0,0 C90.7,0.93 147.9,27.19 291.9,59.91 C387.9,81.73 543.6,89.33 759,82.73 C469.34,156.25 216.34,153.67 0,74.97" opacity="0.10"></path>
+            <path d="M100,104.71 C277.41,72.23 426.15,52.52 546.2,45.58 C666.26,38.63 810.52,41.8 979,55.07 C931.07,56.12 810.3,74.85 616.7,111.24 C423.1,147.64 250.86,145.46 100,104.71 Z" opacity="0.10"></path>
+            <path d="M1046,51.65 C1130.83,29.33 1279.08,17.61 1439,40.17 L1439,120 C1271.17,77.94 1140.17,55.16 1046,51.65 Z" opacity="0.20"></path>
+          </g>
+          <g transform="translate(-4 76)" fill="#FFFFFF" fill-rule="nonzero">
+            <path d="M0.457,34.035 C57.086,53.198 98.208,65.809 123.822,71.865 C181.454,85.495 234.295,90.29 272.033,93.459 C311.355,96.759 396.635,95.801 461.025,91.663 C486.76,90.01 518.727,86.372 556.926,80.752 C595.747,74.596 622.372,70.008 636.799,66.991 C663.913,61.324 712.501,49.503 727.605,46.128 C780.47,34.317 818.839,22.532 856.324,15.904 C922.689,4.169 955.676,2.522 1011.185,0.432 C1060.705,1.477 1097.39,3.129 1121.236,5.387 C1161.703,9.219 1208.621,17.821 1235.4,22.304 C1285.855,30.748 1354.351,47.432 1440.886,72.354 L1441.191,104.352 L1.121,104.031 L0.457,34.035 Z"></path>
+          </g>
+        </g>
+      </svg>
+    </div>
+  </section>
+
+  <!-- MAIN CONTENT -->
+  <main class="py-16 bg-white">
+    <div class="max-w-7xl mx-auto px-6 grid lg:grid-cols-[1fr_320px] gap-12">
+      <!-- Article -->
+      <article class="prose prose-slate max-w-none">
+        <p class="text-slate-500 text-sm">Intro paragraph • Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer ac dictum nisi. Vivamus dignissim, sapien a hendrerit luctus, libero velit mattis diam, in varius nunc urna sed velit.</p>
+
+        <h2 id="sec-1">Section One</h2>
+        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Maecenas at pharetra nulla. Sed a ligula vitae augue pretium auctor. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia curae; Integer eget commodo est.</p>
+        <p>Phasellus laoreet dolor ut justo sollicitudin, vitae efficitur mi auctor. Duis id ultrices orci. Proin quis consectetur nibh. Pellentesque lacinia luctus orci, sed tristique erat fringilla sit amet.</p>
+
+        <h3 id="sec-1a">Subsection A</h3>
+        <p>Curabitur feugiat libero at eros interdum, non cursus nibh faucibus. Pellentesque a lectus sit amet mi tempor malesuada.</p>
+
+        <h2 id="sec-2">Section Two</h2>
+        <p>Donec vitae nisl ut quam dapibus feugiat. In vel dolor eu sem convallis interdum. Donec at pretium elit. In hac habitasse platea dictumst.</p>
+        <ul>
+          <li>Lorem ipsum dolor sit amet</li>
+          <li>Consectetur adipiscing elit</li>
+          <li>Sed do eiusmod tempor incididunt</li>
+        </ul>
+
+        <h3 id="sec-2a">Subsection B</h3>
+        <p>Integer pharetra suscipit augue, a luctus arcu laoreet nec. Maecenas dictum pretium dui id egestas. Suspendisse blandit, libero ac fringilla vestibulum, nisl elit porttitor lorem, nec molestie justo purus in odio.</p>
+
+        <h2 id="sec-3">Conclusion</h2>
+        <p>Praesent commodo, arcu non bibendum pharetra, odio justo tempus lorem, nec cursus nibh neque id velit. Cras ut efficitur eros. Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas.</p>
+
+        <!-- Tags -->
+        <div class="mt-10 flex flex-wrap gap-2">
+          <a href="#" class="text-xs px-2 py-1 rounded-full bg-slate-100 ring-1 ring-slate-200">tag-one</a>
+          <a href="#" class="text-xs px-2 py-1 rounded-full bg-slate-100 ring-1 ring-slate-200">tag-two</a>
+          <a href="#" class="text-xs px-2 py-1 rounded-full bg-slate-100 ring-1 ring-slate-200">tag-three</a>
+        </div>
+
+        <!-- Prev / Next -->
+        <nav class="mt-12 grid md:grid-cols-2 gap-4">
+          <a href="#" class="block rounded-xl border border-slate-200 p-4 hover:bg-slate-50">
+            <p class="text-xs uppercase tracking-wider text-slate-500">Previous</p>
+            <p class="font-semibold">Lorem Ipsum Dolor Sit</p>
+          </a>
+          <a href="#" class="block rounded-xl border border-slate-200 p-4 text-right hover:bg-slate-50">
+            <p class="text-xs uppercase tracking-wider text-slate-500">Next</p>
+            <p class="font-semibold">Consectetur Adipiscing Elit</p>
+          </a>
+        </nav>
+      </article>
+
+      <!-- Sidebar -->
+      <aside class="sticky top-24 h-fit space-y-6">
+        <!-- TOC -->
+        <div class="rounded-2xl border border-slate-200 p-6">
+          <p class="text-xs font-semibold uppercase tracking-wider text-slate-500">On this page</p>
+          <nav id="toc" class="mt-3 text-sm space-y-2">
+            <!-- Auto-populated -->
+          </nav>
+        </div>
+
+        <!-- About / Author card -->
+        <div class="rounded-2xl border border-slate-200 p-6">
+          <p class="text-xs font-semibold uppercase tracking-wider text-slate-500">About</p>
+          <p class="mt-2 text-slate-600">This is a placeholder subpage template following the PictSure site style. Duplicate it for each blog-style page.</p>
+        </div>
+
+      </aside>
+    </div>
+  </main>
+
+  <!-- FOOTER -->
+  <footer class="border-t border-slate-100 py-12">
+    <div class="max-w-7xl mx-auto px-6 flex flex-col md:flex-row items-center justify-between gap-6">
+      <p class="text-slate-600">© <span id="year"></span> PictSure. All rights reserved.</p>
+      <a href="index.html" class="inline-flex items-center rounded-full px-6 py-2 font-semibold text-white bg-gradient-to-r from-pink-500 to-amber-400 shadow-lg shadow-pink-500/20 hover:opacity-95">← Back to Home</a>
+    </div>
+  </footer>
+
+  <script>
+    // Footer year
+    document.getElementById('year').textContent = new Date().getFullYear();
+
+    // Simple reading time (200 wpm)
+    (function() {
+      const article = document.querySelector('article');
+      if (!article) return;
+      const text = article.innerText || '';
+      const words = text.trim().split(/\s+/).length;
+      const minutes = Math.max(1, Math.round(words / 200));
+      const el = document.getElementById('reading-time');
+      if (el) el.textContent = minutes;
+    })();
+
+    // Auto-build TOC from h2/h3
+    (function() {
+      const headings = document.querySelectorAll('article h2, article h3');
+      const toc = document.getElementById('toc');
+      if (!toc || !headings.length) return;
+
+      headings.forEach(h => {
+        if (!h.id) {
+          h.id = h.textContent.trim().toLowerCase().replace(/[^\w]+/g, '-');
+        }
+        const a = document.createElement('a');
+        a.href = `#${h.id}`;
+        a.textContent = h.textContent;
+        a.className = 'block hover:underline';
+        if (h.tagName === 'H3') a.className += ' ml-3 opacity-80';
+        toc.appendChild(a);
+      });
+    })();
+  </script>
+</body>
+</html>
