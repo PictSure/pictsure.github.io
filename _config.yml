@@ -1,7 +1,7 @@
 title: PictSure
 description: In-Context Image Classification
 baseurl: ""        # empty for local serving; set "/repo" when deploying to user.github.io/repo
-url: "https://pictsure.github.io"            # set "https://user.github.io" when you know it
+url: "https://pictsure.eu"            # set "https://user.github.io" when you know it
 
 # Use a custom collection for articles (instead of _posts)
 collections:
