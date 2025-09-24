@@ -1,5 +1,5 @@
 title: PictSure
-description: In-Context Image Classification
+description: A series of few shot In-Context Image Classification models, called PictSure, that can be used to classify images based on a few examples provided in the prompt.
 baseurl: ""        # empty for local serving; set "/repo" when deploying to user.github.io/repo
 url: "https://pictsure.eu"            # set "https://user.github.io" when you know it
 
