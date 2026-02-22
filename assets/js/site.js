@@ -24,6 +24,26 @@
     }
   }
 
+  // Copy-to-clipboard button on every code block
+  // Attach to the .highlight wrapper (parent of pre) so the button is not
+  // clipped by pre's overflow:auto.
+  document.querySelectorAll('#post-body pre').forEach(pre => {
+    const container = pre.closest('.highlight') || pre;
+    if (container !== pre) container.style.position = 'relative';
+    const btn = document.createElement('button');
+    btn.className = 'copy-btn';
+    btn.setAttribute('aria-label', 'Copy code');
+    btn.textContent = 'Copy';
+    container.appendChild(btn);
+    btn.addEventListener('click', () => {
+      const code = pre.querySelector('code');
+      navigator.clipboard.writeText(code ? code.innerText : pre.innerText).then(() => {
+        btn.textContent = 'Copied!';
+        setTimeout(() => { btn.textContent = 'Copy'; }, 2000);
+      });
+    });
+  });
+
   // Horizontal scroller buttons on home
   const scroller = document.getElementById('cards');
   const prev = document.getElementById('prevBtn');

@@ -1,0 +1,95 @@
+/* Rouge syntax highlighting — GitHub Light (modern) theme
+   Token reference: https://github.com/rouge-ruby/rouge/wiki/List-of-tokens */
+
+.highlight { background-color: #f6f8fa; }
+.highlight table td { padding: 5px; }
+.highlight table pre { margin: 0; }
+
+/* Comments */
+.highlight .c,
+.highlight .ch,
+.highlight .cd,
+.highlight .cm,
+.highlight .cpf,
+.highlight .c1,
+.highlight .cs  { color: #6e7781; font-style: italic; }
+
+/* Preprocessor / annotation */
+.highlight .cp  { color: #6e7781; }
+
+/* Keywords */
+.highlight .k,
+.highlight .kv  { color: #cf222e; }
+.highlight .kc  { color: #0550ae; }          /* True / False / None */
+.highlight .kd  { color: #cf222e; }          /* def / class keyword */
+.highlight .kn  { color: #cf222e; }          /* import / from */
+.highlight .kp  { color: #cf222e; }
+.highlight .kr  { color: #cf222e; }
+.highlight .kt  { color: #953800; }          /* type keywords */
+
+/* Strings */
+.highlight .s,
+.highlight .dl,
+.highlight .s1,
+.highlight .s2,
+.highlight .sb,
+.highlight .sc,
+.highlight .sd,
+.highlight .sh,
+.highlight .si,
+.highlight .sx  { color: #0a3069; }
+.highlight .se  { color: #0550ae; }          /* escape sequences */
+.highlight .sr  { color: #0a3069; }          /* regex */
+.highlight .ss  { color: #0a3069; }
+
+/* Numbers */
+.highlight .m,
+.highlight .mb,
+.highlight .mf,
+.highlight .mh,
+.highlight .mi,
+.highlight .mo,
+.highlight .mx,
+.highlight .il  { color: #0550ae; }
+
+/* Names */
+.highlight .na  { color: #0550ae; }          /* attribute */
+.highlight .nb  { color: #0550ae; }          /* builtin (print, len …) */
+.highlight .nc  { color: #953800; }          /* class name */
+.highlight .nd  { color: #8250df; }          /* decorator (@something) */
+.highlight .ne  { color: #cf222e; }          /* exception */
+.highlight .nf,
+.highlight .fm  { color: #8250df; }          /* function / method name */
+.highlight .ni  { color: #24292f; }          /* entity name */
+.highlight .nl  { color: #24292f; }          /* label */
+.highlight .nn  { color: #953800; }          /* namespace / module */
+.highlight .no  { color: #0550ae; }          /* constant */
+.highlight .nt  { color: #116329; }          /* tag (HTML/XML) */
+.highlight .nv,
+.highlight .vm  { color: #24292f; }
+.highlight .vc  { color: #24292f; }
+.highlight .vg  { color: #24292f; }
+.highlight .vi  { color: #24292f; }
+.highlight .bp  { color: #0550ae; }          /* self / cls */
+
+/* Operators */
+.highlight .o,
+.highlight .ow { color: #cf222e; }
+
+/* Generic (diffs, prompts, etc.) */
+.highlight .gd  { color: #82071e; background-color: #ffebe9; }
+.highlight .ge  { font-style: italic; }
+.highlight .gi  { color: #116329; background-color: #dafbe1; }
+.highlight .go  { color: #6e7781; }
+.highlight .gp  { color: #6e7781; font-weight: bold; }
+.highlight .gr  { color: #cf222e; }
+.highlight .gs  { font-weight: bold; }
+.highlight .gu  { color: #0550ae; font-weight: bold; }
+.highlight .gt  { color: #cf222e; }
+.highlight .gh  { color: #0550ae; }
+
+/* Errors */
+.highlight .err { color: #cf222e; background-color: #ffebe9; border: none; }
+
+/* Whitespace marker */
+.highlight .w   { color: #6e7781; }

@@ -84,9 +84,39 @@
 #post-body pre code {
   font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, 'Roboto Mono', 'Courier New', monospace;
   font-size: 0.95rem;
-  color: #0f172a; /* slate-900 */
   background: transparent;
   padding: 0; /* avoid double padding inside pre */
+}
+
+/* Copy-to-clipboard button — sits on the .highlight wrapper, not inside pre,
+   so it is never clipped by pre's overflow:auto. */
+#post-body .highlight {
+  position: relative;
+}
+
+#post-body .copy-btn {
+  position: absolute;
+  top: 0.5rem;
+  right: 0.6rem;
+  padding: 0.2rem 0.65rem;
+  font-size: 0.72rem;
+  font-family: ui-sans-serif, system-ui, sans-serif;
+  font-weight: 600;
+  color: #64748b;
+  background: #e2e8f0;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  opacity: 0.7;
+  transition: opacity 0.15s, background 0.15s, color 0.15s;
+  line-height: 1.5;
+  z-index: 1;
+}
+
+#post-body .copy-btn:hover {
+  opacity: 1;
+  background: #cbd5e1;
+  color: #1e293b;
 }
 
 /* Left accent bar for visual highlighting */

@@ -4,7 +4,7 @@ date: 2025-06-16
 author: PictSure Team
 tags: [announcement, icl, vision]
 category: Update
-cover: assets/img/PictSureFirstPaper.png
+cover: /assets/img/PictSureFirstPaper.png
 excerpt: "A quick overview of the vision-only ICL classifier and what we’re releasing."
 ---
 

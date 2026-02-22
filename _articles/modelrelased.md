@@ -4,7 +4,7 @@ date: 2025-08-05
 author: PictSure Team
 tags: [release, icl, vision]
 category: Update
-cover: assets/img/PictSureFirstModel.png
+cover: /assets/img/PictSureFirstModel.png
 excerpt: "Our pretrained PictSure models are now live on Hugging Face."
 ---
 
