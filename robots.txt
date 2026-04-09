@@ -6,3 +6,7 @@ User-agent: *
 Allow: /
 
 Sitemap: {{ site.url }}/sitemap.xml
+
+# LLM-friendly content discovery
+# See /llms.txt for a structured overview of this site
+# See /llms-full.txt for complete plain-text content of all pages

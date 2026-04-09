@@ -1,0 +1,74 @@
+---
+layout: none
+permalink: /llms-full.txt
+sitemap: false
+---
+# {{ site.title }} — Full Content
+
+Source: {{ site.url }}
+Description: {{ site.description }}
+
+This file contains the complete text of all pages on {{ site.url }} for LLM consumption.
+For a concise overview, see: {{ site.url }}/llms.txt
+
+---
+
+# Homepage
+
+URL: {{ site.url }}/
+
+PictSure: An In-Context Learning Image Classifier
+
+Few-Shot, Vision-Only ICL
+
+A compact transformer that classifies images in-context using only visual embeddings — no gradient updates, no language supervision. Strong out-of-domain performance depends critically on how the embedding model is pretrained.
+
+## Architecture at a Glance
+
+Sequence of support tokens (image + label) and a query token enter a 4-block Transformer encoder with asymmetric attention: support attends to support; query attends to all support; support does NOT attend to query. The query representation feeds a classification head to predict the label.
+
+## Open Source Models & Code
+
+All PictSure models and inference code are fully open source and available for use and modification.
+
+Each model differs only in the embedding backbone and pretraining method; all share the same ICL transformer and label-in-token design.
+
+- Hugging Face Models: https://huggingface.co/pictsure
+- GitHub Repository: https://github.com/PictSure/pictsure-library
+
+## Quick Start Code Example
+
+```python
+from PictSure import PictSure
+from PIL import Image
+
+model = PictSure.from_pretrained("pictsure/pictsure-vit")
+context_images = [
+    Image.open("cat1.jpg"),
+    Image.open("cat2.jpg"),
+    Image.open("dog1.jpg"),
+    Image.open("dog2.jpg")
+]
+context_labels = [0, 0, 1, 1]  # 0 for cat, 1 for dog
+model.set_context_images(context_images, context_labels)
+test_image = Image.open("unknown_animal.jpg")
+prediction = model.predict(test_image)
+print(f"Predicted class: {prediction}")
+```
+
+---
+{% assign articles = site.articles | sort: 'date' | reverse %}
+{% for article in articles %}
+# {{ article.title }}
+
+URL: {{ site.url }}{{ article.url }}
+Date: {{ article.date | date: "%Y-%m-%d" }}
+Author: {{ article.author | default: site.title }}
+Tags: {{ article.tags | join: ', ' }}
+Category: {{ article.category | default: 'Update' }}
+Excerpt: {{ article.excerpt }}
+
+{{ article.content | strip_html | strip }}
+
+---
+{% endfor %}

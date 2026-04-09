@@ -107,6 +107,7 @@
   </style>
   <link rel="stylesheet" href="{{ '/assets/css/syntax.css' | relative_url }}">
   <link rel="stylesheet" href="{{ '/assets/css/site.css' | relative_url }}">
+  <link rel="alternate" type="text/plain" title="LLM-friendly content" href="{{ site.url }}/llms.txt">
 </head>
 <body class="text-slate-800 antialiased">
 
@@ -164,7 +165,34 @@
           "@type": "ImageObject",
           "url": "{{ site.url }}/assets/img/PictSureIcon.png"
         }
-      }{%- if page.date -%},
+      }{%- unless page.date -%},
+      {
+        "@type": "SoftwareApplication",
+        "@id": "{{ site.url }}#software",
+        "name": "PictSure",
+        "description": "Few-shot, vision-only in-context learning image classifier. Classifies images from a handful of labeled examples with no fine-tuning, no gradient updates, and no language supervision.",
+        "url": "{{ site.url }}",
+        "codeRepository": "https://github.com/PictSure/pictsure-library",
+        "applicationCategory": "Machine Learning",
+        "applicationSubCategory": "Image Classification",
+        "operatingSystem": "Cross-platform",
+        "programmingLanguage": "Python",
+        "offers": {
+          "@type": "Offer",
+          "price": "0",
+          "priceCurrency": "USD"
+        },
+        "author": {
+          "@type": "Organization",
+          "@id": "{{ site.url }}#organization"
+        },
+        "relatedLink": [
+          "https://huggingface.co/pictsure/pictsure-resnet",
+          "https://huggingface.co/pictsure/pictsure-vit",
+          "https://arxiv.org/abs/2506.14842"
+        ]
+      }
+      {%- endunless -%}{%- if page.date -%},
       {
         "@type": "BlogPosting",
         "@id": "{{ site.url }}{{ page.url }}#article",

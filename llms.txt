@@ -1,0 +1,72 @@
+---
+layout: none
+permalink: /llms.txt
+sitemap: false
+---
+# {{ site.title }}
+
+> PictSure is an open-source research project providing few-shot, vision-only in-context learning (ICL) image classifiers that require no fine-tuning or gradient updates at inference time.
+
+PictSure is a compact transformer that classifies images using only visual embeddings and a handful of labeled context examples — no gradient updates, no language supervision. The core research finding: the quality of the embedding model (architecture and pretraining objective) is the decisive factor for out-of-domain generalization.
+
+Two pretrained models are available on Hugging Face:
+- PictSure-ResNet18: 53M parameters, frozen ResNet18 backbone with supervised pretraining
+- PictSure-ViT-Triplet: 128M parameters, ViT backbone pretrained with triplet loss for a more structured embedding space
+
+Both models match or outperform much larger CLIP-based ICL models on general, agricultural, and medical imaging benchmarks, especially on out-of-domain tasks (e.g. Brain Tumor, OrganCMNIST) where language-aligned embeddings fall short.
+
+## Key Resources
+
+- [Homepage]({{ site.url }}/): Project overview, architecture explanation, and quick-start code
+- [Research Paper — arXiv:2506.14842](https://arxiv.org/abs/2506.14842): "PictSure: Pretraining Embeddings Matters for In-Context Learning Image Classifiers"
+- [GitHub Library](https://github.com/PictSure/pictsure-library): Open-source Python library for PictSure inference
+- [PictSure-ResNet18 on Hugging Face](https://huggingface.co/pictsure/pictsure-resnet): 53M parameter compact model
+- [PictSure-ViT-Triplet on Hugging Face](https://huggingface.co/pictsure/pictsure-vit): 128M parameter ViT variant
+- [Hugging Face Organization](https://huggingface.co/pictsure): All released PictSure models
+
+## Architecture
+
+PictSure uses a 4-block Transformer encoder with asymmetric attention masks:
+- Support tokens (image + label) attend to other support tokens only
+- Query token attends to all support tokens
+- Support tokens do NOT attend to the query token
+- The query representation feeds a linear classification head
+
+Embedding backbones (ResNet18 or ViT) are frozen at inference. The model performs classification purely via forward pass — no backward passes, no parameter updates.
+
+## Quick Start
+
+```python
+from PictSure import PictSure
+from PIL import Image
+
+model = PictSure.from_pretrained("pictsure/pictsure-vit")
+
+context_images = [Image.open("cat1.jpg"), Image.open("cat2.jpg"),
+                  Image.open("dog1.jpg"), Image.open("dog2.jpg")]
+context_labels = [0, 0, 1, 1]
+
+model.set_context_images(context_images, context_labels)
+prediction = model.predict(Image.open("unknown.jpg"))
+```
+
+## Citation
+
+```bibtex
+@article{schiesser2025pictsure,
+  title={PictSure: Pretraining Embeddings Matters for In-Context Learning Image Classifiers},
+  author={Schiesser, Lukas and Wolff, Cornelius and Haas, Sophie and Pukrop, Simon},
+  journal={arXiv preprint arXiv:2506.14842},
+  year={2025}
+}
+```
+
+## Articles
+{% assign articles = site.articles | sort: 'date' | reverse %}
+{% for article in articles %}
+- [{{ article.title }}]({{ site.url }}{{ article.url }}): {{ article.excerpt }}
+{% endfor %}
+
+## Optional
+
+- [Full content]({{ site.url }}/llms-full.txt): Complete plain-text content of all articles for LLM consumption
