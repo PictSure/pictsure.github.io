@@ -44,6 +44,17 @@
     });
   });
 
+  // Wrap article tables so wide ones scroll horizontally instead of
+  // overflowing the page. Keeps the table itself display:table so column
+  // widths, borders and rounded corners still work.
+  document.querySelectorAll('#post-body table').forEach(table => {
+    if (table.parentElement && table.parentElement.classList.contains('table-wrap')) return;
+    const wrap = document.createElement('div');
+    wrap.className = 'table-wrap';
+    table.parentNode.insertBefore(wrap, table);
+    wrap.appendChild(table);
+  });
+
   // Horizontal scroller buttons on home
   const scroller = document.getElementById('cards');
   const prev = document.getElementById('prevBtn');

@@ -50,7 +50,7 @@ Datasets are pulled at the smallest useful size through the Hugging Face dataset
 All five encoders ran all 45 tasks end to end: **225 task runs, zero failures**, confirming the documented `from_pretrained` to `set_context_images` to `predict` pattern works for every published repository. Aggregated over all 45 tasks:
 
 | Model | Micro accuracy | Macro accuracy | Best or tied on |
-|---|---|---|---|
+|---|---:|---:|---:|
 | `pictsure-vit` | 53.0% | 57.6% | 5/45 tasks |
 | `pictsure-resnet` | 28.1% | 33.3% | 1/45 tasks |
 | `pictsure-dinov2` | 74.9% | 77.0% | 16/45 tasks |

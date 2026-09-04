@@ -152,14 +152,89 @@
   display: block;
 }
 
-/* Tables: allow horizontal scrolling within the article instead of overflowing the page */
+/* Inline code (outside of fenced blocks) */
+#post-body :not(pre) > code {
+  font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, 'Roboto Mono', 'Courier New', monospace;
+  font-size: 0.875em;
+  background: #f1f5f9;      /* slate-100 */
+  color: #0f172a;           /* slate-900 */
+  padding: 0.12em 0.38em;
+  border-radius: 5px;
+  border: 1px solid #e2e8f0;
+}
+
+/* Tables: scroll horizontally inside the article rather than overflowing the page.
+   .table-wrap is added around every article table by site.js. */
+#post-body .table-wrap {
+  overflow-x: auto;
+  -webkit-overflow-scrolling: touch;
+  margin: 1.5rem 0;
+}
+
 #post-body table {
   width: 100%;
-  max-width: 100%;
-  border-collapse: collapse;
-  display: block;
-  overflow: auto;
-  -webkit-overflow-scrolling: touch;
+  border-collapse: separate;  /* separate + border-spacing:0 so border-radius applies */
+  border-spacing: 0;
+  border: 1px solid #e2e8f0;  /* slate-200 */
+  border-radius: 12px;
+  overflow: hidden;           /* clip cell backgrounds to the rounded corners */
+  font-size: 0.9rem;
+  line-height: 1.45;
+  margin: 1.5rem 0;
+  font-variant-numeric: tabular-nums;  /* digits line up across rows */
+}
+
+#post-body .table-wrap > table {
+  margin: 0;                  /* the wrapper owns the vertical rhythm */
+  min-width: 100%;
+  width: auto;                /* let wide tables scroll instead of squashing */
+}
+
+#post-body thead th {
+  background: #f8fafc;        /* slate-50 */
+  color: #0f172a;
+  font-weight: 600;
+  text-align: left;
+  white-space: nowrap;
+  padding: 0.7rem 1rem;
+  border-bottom: 1px solid #e2e8f0;
+}
+
+#post-body tbody td {
+  padding: 0.65rem 1rem;
+  border-bottom: 1px solid #f1f5f9;  /* slate-100 */
+  vertical-align: top;
+}
+
+#post-body tbody tr:last-child td {
+  border-bottom: 0;
+}
+
+#post-body tbody tr:hover td {
+  background: #f8fafc;
+}
+
+/* First column reads as the row label */
+#post-body tbody td:first-child {
+  font-weight: 500;
+  color: #0f172a;
+}
+
+/* Code spans sit inside tight cells, so drop the chrome and keep them compact */
+#post-body th :not(pre) > code,
+#post-body td :not(pre) > code {
+  background: transparent;
+  border: 0;
+  padding: 0;
+  font-size: 0.9em;
+  color: #334155;             /* slate-700 */
+  white-space: nowrap;        /* keep model names on one line in a cell */
+}
+
+/* Emphasised (best) values: markdown ** ** inside a cell */
+#post-body td strong {
+  font-weight: 700;
+  color: #047857;             /* emerald-700, matches the site accent */
 }
 
 /* Keep code blocks scrollable but not wider than container */
