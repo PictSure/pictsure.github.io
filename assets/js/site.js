@@ -55,6 +55,21 @@
     wrap.appendChild(table);
   });
 
+  // Copy button for standalone snippets (e.g. the BibTeX block on the home
+  // page). The button points at its <code> element via data-copy-target.
+  document.querySelectorAll('[data-copy-target]').forEach(btn => {
+    const target = document.getElementById(btn.getAttribute('data-copy-target'));
+    if (!target) return;
+    const label = btn.querySelector('.bibtex-copy-label') || btn;
+    const original = label.textContent;
+    btn.addEventListener('click', () => {
+      navigator.clipboard.writeText(target.innerText).then(() => {
+        label.textContent = 'Copied!';
+        setTimeout(() => { label.textContent = original; }, 2000);
+      });
+    });
+  });
+
   // Horizontal scroller buttons on home
   const scroller = document.getElementById('cards');
   const prev = document.getElementById('prevBtn');

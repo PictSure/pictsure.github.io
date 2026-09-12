@@ -187,5 +187,49 @@ print(f<span class="text-orange-700">"Predicted class: {prediction}"</span>)
   </div>
 </section>
 
+<!-- ===== Citation ===== -->
+<section id="cite" class="py-20 md:py-28 bg-slate-50 border-t border-slate-100">
+  <div class="max-w-4xl mx-auto px-6">
+    <h2 class="text-center text-5xl font-extrabold tracking-tight">Cite PictSure</h2>
+    <div class="title-underline"></div>
+    <p class="mt-6 text-center text-slate-600">
+      If PictSure is useful for your research, please cite our paper.
+    </p>
+
+    <figure class="mt-10 rounded-2xl overflow-hidden bg-slate-900 shadow-xl shadow-slate-900/10 ring-1 ring-slate-900/5">
+      <figcaption class="flex items-center justify-between gap-4 px-5 py-3 bg-slate-800/80 border-b border-white/10">
+        <div class="min-w-0">
+          <p class="text-[11px] uppercase tracking-widest font-semibold text-emerald-400">BibTeX</p>
+          <p class="mt-0.5 text-sm text-slate-300 truncate">Schiesser et&nbsp;al., GCAI (KI)&nbsp;2026</p>
+        </div>
+        <button type="button" class="bibtex-copy shrink-0 inline-flex items-center gap-2 rounded-full bg-white/10 hover:bg-white/20 ring-1 ring-white/20 text-white text-sm font-semibold px-4 py-1.5 transition"
+          data-copy-target="bibtex-pictsure" aria-label="Copy BibTeX citation">
+          <svg class="h-4 w-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+            stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+            <rect x="9" y="9" width="11" height="11" rx="2"></rect>
+            <path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path>
+          </svg>
+          <span class="bibtex-copy-label">Copy</span>
+        </button>
+      </figcaption>
+      <pre class="overflow-x-auto px-5 py-5 text-[13px] leading-relaxed text-slate-200"><code id="bibtex-pictsure" class="font-mono">{% raw %}<span class="text-emerald-400">@inproceedings</span>{<span class="text-sky-300">schiesser2026pictsure</span>,
+  <span class="text-slate-400">title</span>={<span class="text-amber-200">PictSure: Pretraining embeddings matters for in-context learning image classifiers</span>},
+  <span class="text-slate-400">author</span>={<span class="text-amber-200">Schiesser, Lukas and Wolff, Cornelius and Haas, Sophie and Pukrop, Simon</span>},
+  <span class="text-slate-400">booktitle</span>={<span class="text-amber-200">German Conference on Artificial Intelligence (K{\"u}nstliche Intelligenz)</span>},
+  <span class="text-slate-400">pages</span>={<span class="text-amber-200">300--308</span>},
+  <span class="text-slate-400">year</span>={<span class="text-amber-200">2026</span>},
+  <span class="text-slate-400">organization</span>={<span class="text-amber-200">Springer</span>}
+}{% endraw %}</code></pre>
+    </figure>
+
+    <div class="mt-6 flex flex-wrap justify-center gap-4">
+      <a href="https://arxiv.org/abs/2506.14842" target="_blank" rel="noopener"
+        class="inline-flex items-center rounded-full bg-emerald-600 text-white px-6 py-2 font-semibold shadow hover:bg-emerald-700 transition">
+        arXiv Paper
+      </a>
+    </div>
+  </div>
+</section>
+
 <!-- ===== The rest of your homepage content (Models & Results, Resources, Footer) ===== -->
 {{ content }} <!-- we’ll keep the remaining sections inline to keep this file short -->
